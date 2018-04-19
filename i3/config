@@ -1,0 +1,104 @@
+# modkey
+set $mod Mod4
+
+# exec shortcut
+set $exec exec --no-startup-id
+
+# colors
+set $red #752a2a
+set $gray0 #1b1b1b
+set $gray1 #262626
+set $gray2 #9e9e9e
+
+# smart gaps
+smart_gaps on
+
+# gaps
+gaps inner 10
+gaps outer 0
+
+# window borders
+new_window pixel 2
+
+# border colors
+#                       border   background  text    indicator  child_border
+client.focused          $gray1   $gray0      $gray2  $gray0     $gray1
+client.unfocused        $gray1   $gray0      $gray2  $gray0     $gray0
+client.focused_inactive $gray1   $gray0      $gray2  $gray0     $gray0
+client.urgent           $red     $gray0      $gray2  $red       $red
+client.background       $gray1
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+# i3 reload/restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# kill active window
+bindsym $mod+Shift+w kill
+
+# floating windows
+bindsym $mod+space floating toggle
+
+# drag floating window
+floating_modifier $mod
+
+# resize mode
+bindsym $mod+r mode "resize"
+
+# resize windows
+mode "resize" {
+          bindsym Left        resize grow width 10 px or 10 ppt
+          bindsym Down        resize shrink height 10 px or 10 ppt
+          bindsym Up          resize shrink height -10 px or -10 ppt
+          bindsym Right       resize shrink width 10 px or 10 ppt
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+}
+
+# volume keys
+#bindsym XF86AudioRaiseVolume $exec amixer set -c 0 Master 2%+
+#bindsym XF86AudioLowerVolume $exec amixer set -c 0 Master 2%-
+#bindsym XF86AudioMute $exec amixer -D pulse set Master toggle
+
+# applications
+bindsym $mod+s $exec maim -u -s --format=png /dev/stdout | xclip -selection clipboard -t image/png -i
+bindsym $mod+Return $exec termite
+bindsym $mod+f $exec termite -e ranger
+bindsym $mod+d $exec rofi -show run
+
+# autostart
+$exec polybar top &
+$exec feh --bg-tile ~/.config/.bg.png

@@ -1,0 +1,9 @@
+unsetopt correct
+setopt MENU_COMPLETE
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_DUPS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt AUTO_CD
